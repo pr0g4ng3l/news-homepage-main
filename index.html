@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | News homepage</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; margin-top: 1rem;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --soft-orange: hsl(35, 77%, 62%);
+      --soft-red: hsl(5, 85%, 63%);
+      --off-white: hsl(36, 100%, 99%);
+      --grayish-blue: hsl(233, 8%, 79%);
+      --dark-grayish-blue: hsl(236, 13%, 42%);
+      --very-dark-blue: hsl(240, 100%, 5%);
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 6rem;
+    }
+
+    .nav ul {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .nav ul li {
+      list-style: none;
+    }
+
+    .nav ul li a {
+      text-decoration: none;
+      color: var(--dark-grayish-blue);
+    }
+
+    .nav ul li a:hover {
+      color: #000;
+    }
+
+    .ham-icon {
+      display: none;
+    }
+
+    .main-section {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 18rem 9rem min-content;
+      gap: 1rem;
+    }
+
+    .main-section img { 
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      grid-column: 1/3;
+      grid-row: 1/2;
+    }
+
+    .main-section h1 {
+      grid-column: 1;
+      grid-row: 2;
+      font-size: 2.5rem;
+    }
+
+    .main-paragraph {
+      grid-column: 2;
+      grid-row: 2;
+      position: relative;
+    }
+
+    .main-paragraph p {
+      font-size: 1rem;
+      color: var(--dark-grayish-blue);
+    }
+
+    .main-paragraph button {
+      background-color: var(--soft-red);
+      color: #fff;
+      border: none;
+      padding: .8rem 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      position: absolute;
+      bottom: 0;
+      cursor: pointer;
+    }
+
+    .second-card {
+      grid-column: 3;
+      grid-row: 1/3;
+      height: 100%;
+      background-color: var(--very-dark-blue);
+      color: #fff;
+      padding: 1.5rem 1.3rem;
+    }
+
+    .second-card h3 {
+      font-size: 2rem;
+      color: var(--soft-orange);
+      margin-bottom: 2rem;
+    }
+
+    .second-card-articles {
+      height: 20rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .second-card-article {
+      border-bottom: 1px solid var(--grayish-blue);
+      padding-bottom: 2rem;
+    }
+
+    .second-card-article:last-child {
+      border: none;
+    }
+
+    .second-card-article p {
+      font-size: .8rem;
+      color: var(--grayish-blue);
+    }
+
+    .second-card-article h5 {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+    }
+
+    .footer-article {
+      display: flex;
+    }
+
+    .footer-article img {
+      width: 5rem;
+      height: 100%;
+    }
+
+    .footer-article-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer-article-info h4 {
+      color: var(--grayish-blue);
+      font-size: 1.5rem;
+    }
+
+    .footer-article-info h5 {
+      color: var(--very-dark-blue);
+      font-size: 1rem;
+    }
+
+    .footer-article-info p {
+      color: var(--dark-grayish-blue);
+      font-size: .9rem;
+    }
+
+    #footer-article1 {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    #footer-article2 {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    #footer-article3 {
+      grid-column: 3;
+      grid-row: 3;
+    }
+
+    .footer-article-info {
+      margin-left: 1rem;
+    }
+
+    .close-ham-icon {
+      display: none;
+    }
+
+    @media (max-width: 376px) {
+      .container {
+        width: 100%;
+        padding: 0 2rem;
+      }
+
+      .ham-icon {
+        display: block;
+      }
+
+      .nav {
+        opacity: 0;
+        visibility: hidden; 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        width: 60%;
+        box-shadow: 0 0 0 100vmax #0006;
+      }
+
+      .visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav ul {
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        gap: 1rem;
+        padding-left: 2rem;
+      }
+
+      .nav ul li a {
+        color: var(--very-dark-blue);
+      }
+
+      .main-section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-section > img {
+        height: 18.75rem;
+      }
+
+      .main-paragraph {
+        height: 9rem;
+        margin-bottom: 3rem;
+      }
+
+      .close-ham-icon {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 2.5rem;
+      }
+
+      .ham-icon, .close-ham-icon {
+        border: 0;
+        font-size: 2rem;
+        background-color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+
+    <header class="header">
+      <img src="assets/images/logo.svg" alt="logo">
+      <button id="open-menu" class="ham-icon"><i class="bi bi-list"></i></button>
+      <nav class="nav" id="nav">
+        <button id="close-menu" class="close-ham-icon"><i class="bi bi-x"></i></button>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">New</a></li>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#">Trending</a></li>
+          <li><a href="#">Categories</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Section -->
+
+    <div class="main-section">
+      <img src="assets/images/image-web-3-desktop.jpg" alt="main image">
+      <h1>The Bright Future of Web 3.0?</h1>
+      <div class="main-paragraph">
+        <p>We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. But is it really fulfilling its promise?</p>
+        <button>READ MORE</button>
+      </div>
+      <div class="second-card">
+        <h3>New</h3>
+        <div class="second-card-articles">
+          <div class="second-card-article">
+            <h5>Hydrogen VS Electric Card</h5>
+            <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+          </div>
+          <div class="second-card-article">
+            <h5>The Downsides of AI Artistry</h5>
+            <p>What are the possible adverse effects of on-demand AI image generation?</p>
+          </div>
+          <div class="second-card-article">
+            <h5>Is VC Funding Drying Up?</h5>
+            <p>Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
+          </div>
+        </div>
+      </div>
+
+        <!-- Footer -->
+
+        <div id="footer-article1" class="footer-article">
+          <img src="assets/images/image-retro-pcs.jpg" alt="retro pc">
+          <div class="footer-article-info">
+            <h4>01</h4>
+            <h5>Reviving Retro PCs</h5>
+            <p>What happens when old PCs are given modern upgrades?</p>
+          </div>
+        </div>
+        <div id="footer-article2" class="footer-article">
+          <img src="assets/images/image-top-laptops.jpg" alt="keyboard">
+          <div class="footer-article-info">
+            <h4>02</h4>
+            <h5>Top 10 Laptops of 2022</h5>
+            <p>Our best picks for various needs and budgets.</p>
+          </div>
+        </div>  
+        <div id="footer-article3" class="footer-article">
+          <img src="assets/images/image-gaming-growth.jpg" alt="gaming controller">
+          <div class="footer-article-info">
+            <h4>03</h4>
+            <h5>The Growth of Gaming</h5>
+            <p>How the pandemic has sparked fresh opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Angel</a>.
+  </div>
+  <script>
+    const nav = document.querySelector("#nav");
+    const openMenu = document.querySelector("#open-menu");
+    const closeMenu = document.querySelector("#close-menu");
+
+    openMenu.addEventListener("click", () => {
+      nav.classList.add("visible");
+    })
+
+    closeMenu.addEventListener("click", () => {
+      nav.classList.remove("visible");
+    })
+  </script>
+</body>
+</html>
